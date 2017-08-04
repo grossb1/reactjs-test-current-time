@@ -1,2 +1,5 @@
-# Epiq.AppSupportAppIntegration.Component
-ReactJS Component that connects to SignalR to get real time notificaitons from Epiq
+npm install
+
+npm run build
+
+npm run dev
