@@ -4,6 +4,6 @@ import CurrentTime from 'CurrentTime.jsx';
 
 
 ReactDOM.render(
-    <CurrentTime />,
+    <CurrentTime selected="America/Santiago" />,
     document.getElementById('Content')
 );
