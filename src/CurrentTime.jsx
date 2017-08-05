@@ -56,8 +56,15 @@ class CurrentTime extends React.Component {
     }
 
 	render() {
+        var currentTimeStyle = {
+             fontFamily: 'Avenir',
+             textAlign: 'center',
+             color: '#2c3e50',
+             marginTop: 60
+        }
+
         return (
-         <div id="current-time">
+         <div style={currentTimeStyle}>
              The current time in {this.state.tz} is: {this.state.hours}:{this.state.minutes}:{this.state.seconds}
             <br />
             <select value={this.state.tz} onChange={this.handleOnChange}>
@@ -67,6 +74,7 @@ class CurrentTime extends React.Component {
         </div>
         );
     }
+    
 }
 
 export default CurrentTime;
