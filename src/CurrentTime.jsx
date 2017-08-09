@@ -40,8 +40,7 @@ class CurrentTime extends React.Component {
     }
 
     handleOnChange(event) {
-        this.setState({tz: event.target.value});
-        this.getTime();
+        this.setState({tz: event.target.value}, this.getTime);
     }
 
     getTime() {
