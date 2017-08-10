@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 class CurrentTime extends React.Component {
@@ -8,10 +9,10 @@ class CurrentTime extends React.Component {
         this.state = {
             isToggleOn: true,
             tzList: [],
-            tz:  this.props.selected,
-            hours: "01",
-            minutes: "25",
-            seconds: "23"
+            tz:  this.props.selected || "America/Phoenix",
+            hours: "00",
+            minutes: "00",
+            seconds: "00"
         };
 
         // This binding is necessarxy to make `this` work in the callback
@@ -56,24 +57,32 @@ class CurrentTime extends React.Component {
 
 	render() {
         var currentTimeStyle = {
-             fontFamily: 'Avenir',
+             fontFamily: "'Avenir', Helvetica, Arial, sans-serif",
              textAlign: 'center',
              color: '#2c3e50',
              marginTop: 60
+        }
+
+        var selectStyle = {
+            borderRadius: 5
         }
 
         return (
          <div style={currentTimeStyle}>
              The current time in {this.state.tz} is: {this.state.hours}:{this.state.minutes}:{this.state.seconds}
             <br />
-            <select value={this.state.tz} onChange={this.handleOnChange}>
+            <select style={selectStyle} value={this.state.tz} onChange={this.handleOnChange}>
                 { this.state.tzlist }
             </select>
-            <button onClick={this.handleClick}>{this.state.isToggleOn?"ON":"OFF"}</button>
+            <button onClick={this.handleClick}>Click me!</button>
         </div>
         );
     }
-    
 }
+
+var content = document.getElementById('current-time');
+var selected = content.dataset.selected;
+
+ReactDOM.render(<CurrentTime selected={selected} />, content);
 
 export default CurrentTime;
