@@ -41,10 +41,6 @@ class CurrentTime extends React.Component {
       }
     }
 
-    handleTimeZoneChanged() {
-      
-    }
-
     handleOnChange(event) {
         this.setState({tz: event.target.value}, this.updateTime);
        
