@@ -19,6 +19,7 @@ class CurrentTime extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.getTime = this.getTime.bind(this);
+        this.updateTime = this.updateTime.bind(this);
         
     }
 
@@ -35,13 +36,25 @@ class CurrentTime extends React.Component {
     }
     
     handleClick() {
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }));
+          if(this.props["button-clicked"]) {
+        eval(this.props["button-clicked"])(this.state.tz, event);
+      }
+    }
+
+    handleTimeZoneChanged() {
+      
     }
 
     handleOnChange(event) {
-        this.setState({tz: event.target.value}, this.getTime);
+        this.setState({tz: event.target.value}, this.updateTime);
+       
+    }
+
+    updateTime() {
+        this.getTime();
+         if(this.props["time-zone-changed"]) {
+            eval(this.props["time-zone-changed"])(this.state.tz);
+        }
     }
 
     getTime() {
@@ -82,7 +95,9 @@ class CurrentTime extends React.Component {
 
 var content = document.getElementById('current-time');
 var selected = content.dataset.selected;
+var buttonClicked = content.dataset.buttonClicked;
+var timeZoneChanged = content.dataset.timeZoneChanged;
 
-ReactDOM.render(<CurrentTime selected={selected} />, content);
+ReactDOM.render(<CurrentTime selected={selected} time-zone-changed={timeZoneChanged} button-clicked={buttonClicked} />, content);
 
 export default CurrentTime;
