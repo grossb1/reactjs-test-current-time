@@ -20,6 +20,7 @@ class CurrentTime extends React.Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.getTime = this.getTime.bind(this);
         this.updateTime = this.updateTime.bind(this);
+        this.changeTimeZone = this.changeTimeZone.bind(this);
         
     }
 
@@ -32,7 +33,7 @@ class CurrentTime extends React.Component {
             });
             this.setState({ tzlist })
             this.getTime();
-          })
+          });
     }
     
     handleClick() {
@@ -62,6 +63,10 @@ class CurrentTime extends React.Component {
                 seconds: response.data.seconds
             }));
         })
+    }
+
+    changeTimeZone(tz) {
+        this.setState({tz}, this.updateTime);
     }
 
 	render() {
@@ -94,6 +99,6 @@ var selected = content.dataset.selected;
 var buttonClicked = content.dataset.buttonClicked;
 var timeZoneChanged = content.dataset.timeZoneChanged;
 
-ReactDOM.render(<CurrentTime selected={selected} time-zone-changed={timeZoneChanged} button-clicked={buttonClicked} />, content);
+ReactDOM.render(<CurrentTime selected={selected} time-zone-changed={timeZoneChanged} button-clicked={buttonClicked} ref={(comp) => { document.reactCurrentTime = comp; }} />, content);
 
 export default CurrentTime;
