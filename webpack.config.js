@@ -2,11 +2,14 @@
 var path =  require("path");
 var webpack = require("webpack");
 module.exports = {
-    entry: "./src/CurrentTime.jsx",
+    entry: {
+    bundle: './src/CurrentTime.jsx',
+    appOne: 'app-one.jsx',
+    appTwo: 'app-two.jsx'},
     output: {
         path: path.resolve(__dirname, './dist/'),
         publicPath: '/dist/',
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     resolve: {
         modules: ["src", "node_modules"]
